@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar Imágenes</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div >
+        <a href="index.html">Index</a>
+    </div>
+
+    <div class="search-container">
+        <div class="logo">
+            <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_light_color_92x30dp.png" alt="Logo" width="184" height="60">
+        </div>
+        <form action="https://www.google.com/search" method="get" class="search-box">
+            <input type="text" name="q" placeholder="Buscar imágenes..." autocomplete="off">
+            <input type="hidden" name="tbm" value="isch">
+        </form>
+        <div class="search-buttons">
+            
+                <input type="submit" value="Buscar imágenes" form="search-box">
+                <input type="submit" value="Me siento afortunado" form="search-box">
+            
+        </div>
+    </div>
+    <script>
+        // Submit form on button click
+        document.querySelectorAll('.search-buttons input[type="submit"]').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const form = document.querySelector('.search-box');
+                if (btn.value === "Me siento afortunado") {
+                    form.action = "https://www.google.com/search";
+                    form.method = "get";
+                    form.target = "_blank";
+                    form.querySelector('input[name="q"]').focus();
+                }
+                form.submit();
+            });
+        });
+    </script>
+</body>
+</html>

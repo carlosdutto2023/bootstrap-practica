@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Búsqueda Avanzada</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+   <div>
+        <a href="index.html">Volver al inicio</a>
+    </div>
+
+    <h2>Búsqueda avanzada</h2>
+    <form>
+        
+<div class="form-group">
+    <ul>
+        <li>
+            <label for="todas">Encontrar páginas con... <span>"todas estas palabras:"</span></label>
+            <input type="text" id="todas" name="todas">
+        </li>
+        <li>
+            <label for="exacta">Buscar páginas con... <span>"esta palabra o frase exacta:"</span></label>
+            <input type="text" id="exacta" name="exacta">
+        </li>
+        <li> 
+            <label for="cualquiera">Encuentra páginas con... <span>"cualquiera de estas palabras:"</span></label>
+            <input type="text" id="cualquiera" name="cualquiera">
+        </li>
+        
+          <li> <label for="ninguna">Encontrar páginas con... <span>"ninguna de estas palabras:"</span></label>
+            <input type="text" id="ninguna" name="ninguna">
+            </li>
+</ul>
+        </div>
+    
+
+</form>
+ 
+        <button type="submit" style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; display: block; margin: 20px auto 0 auto;">
+    Buscar
+</button>
+    
+</form>
+    <script>
+    document.querySelector('button[type="submit"]').addEventListener('click', function(e) {
+        e.preventDefault();
+        const todas = document.getElementById('todas').value.trim();
+        const exacta = document.getElementById('exacta').value.trim();
+        const cualquiera = document.getElementById('cualquiera').value.trim();
+        const ninguna = document.getElementById('ninguna').value.trim();
+
+        let query = '';
+        if (todas) query += todas + ' ';
+        if (exacta) query += `"${exacta}" `;
+        if (cualquiera) query += cualquiera.split(' ').join(' OR ') + ' ';
+        if (ninguna) query += ninguna.split(' ').map(w => `-${w}`).join(' ') + ' ';
+
+        window.open('https://www.google.com/search?q=' + encodeURIComponent(query.trim()), '_blank');
+    });
+    </script>
+    
+</body>
+</html>
